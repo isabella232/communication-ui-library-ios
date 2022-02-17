@@ -39,6 +39,7 @@ struct SetupView: View {
             viewModel.setupAudioPermissions()
             viewModel.setupCall()
         }
+        .preferredColorScheme(.dark)
     }
 
     var startCallButton: some View {

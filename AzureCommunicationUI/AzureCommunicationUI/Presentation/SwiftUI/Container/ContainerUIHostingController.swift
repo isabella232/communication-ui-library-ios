@@ -104,7 +104,7 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
                     self.environmentProperties.isProximitySensorOn = $0
                 }
 //                .preferredColorScheme(.dark)
-                .environment(\.colorScheme, .dark)
+//                .environment(\.colorScheme, .dark)
         }
     }
 }
