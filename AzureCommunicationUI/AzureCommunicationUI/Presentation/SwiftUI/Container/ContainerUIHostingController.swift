@@ -30,6 +30,7 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
         self.environmentProperties = environmentProperties
         super.init(rootView: environmentRoot)
         subscribeEnvironmentProperties()
+//        self.view.window?.overrideUserInterfaceStyle = .dark
     }
 
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -102,6 +103,8 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
                 .onPreferenceChange(ProximitySensorPreferenceKey.self) {
                     self.environmentProperties.isProximitySensorOn = $0
                 }
+//                .preferredColorScheme(.dark)
+                .environment(\.colorScheme, .dark)
         }
     }
 }
