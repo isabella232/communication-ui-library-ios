@@ -10,6 +10,7 @@ import FluentUI
 struct SetupView: View {
     @ObservedObject var viewModel: SetupViewModel
     let viewManager: VideoViewManager
+    let avatarManager: AvatarManager
 
     let layoutSpacing: CGFloat = 24
     let horizontalPadding: CGFloat = 16
@@ -23,7 +24,8 @@ struct SetupView: View {
                 VStack(spacing: layoutSpacing) {
                     ZStack(alignment: .bottom) {
                         PreviewAreaView(viewModel: viewModel.previewAreaViewModel,
-                                        viewManager: viewManager)
+                                        viewManager: viewManager,
+                                        avatarManager: avatarManager)
                         SetupControlBarView(viewModel: viewModel.setupControlBarViewModel)
                     }
                     .background(Color(StyleProvider.color.surface))

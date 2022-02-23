@@ -57,8 +57,8 @@ enum LocalVideoViewType {
 
 struct LocalVideoView: View {
     @ObservedObject var viewModel: LocalVideoViewModel
-    @ObservedObject var compositeAvatarViewModel: CompositeAvatarViewModel
     let viewManager: VideoViewManager
+    let avatarManager: AvatarManager
     let viewType: LocalVideoViewType
     let localIdentifier = CommunicationUserIdentifier.init("")
     @Environment(\.screenSizeClass) var screenSizeClass: ScreenSizeClassType
@@ -79,11 +79,12 @@ struct LocalVideoView: View {
                         cameraSwitchButton
                     }
                 } else {
+                    let avatar = avatarManager.getLocalAvatar()
                     VStack(alignment: .center, spacing: 5) {
                         CompositeAvatar(displayName: $viewModel.displayName,
                                         isSpeaking: false,
                                         avatarSize: viewType.avatarSize,
-                                        avatarImage: viewModel.avatar)
+                                        avatarImage: avatar)
                         if viewType.showDisplayNameTitleView {
                             Spacer().frame(height: 10)
                             ParticipantTitleView(displayName: $viewModel.displayName,

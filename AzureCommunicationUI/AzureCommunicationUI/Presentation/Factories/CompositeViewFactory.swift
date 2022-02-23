@@ -27,7 +27,9 @@ struct ACSCompositeViewFactory: CompositeViewFactory {
     }
 
     func makeSetupView() -> SetupView {
-        return SetupView(viewModel: compositeViewModelFactory.getSetupViewModel(), viewManager: videoViewManager)
+        return SetupView(viewModel: compositeViewModelFactory.getSetupViewModel(),
+                         viewManager: videoViewManager,
+                         avatarManager: avatarManager)
     }
 
     func makeCallingView() -> CallingView {

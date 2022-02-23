@@ -78,8 +78,8 @@ struct CallingView: View {
 
         return Group {
             LocalVideoView(viewModel: viewModel.localVideoViewModel,
-                           compositeAvatarViewModel: viewModel.compositeAvatarViewModel!,
                            viewManager: viewManager,
+                           avatarManager: avatarManager,
                            viewType: .localVideoPip)
                 .frame(width: frameWidth, height: frameHeight, alignment: .center)
                 .background(Color(StyleProvider.color.backgroundColor))
@@ -115,8 +115,8 @@ struct CallingView: View {
     var localVideoFullscreenView: some View {
         return Group {
             LocalVideoView(viewModel: viewModel.localVideoViewModel,
-                           compositeAvatarViewModel: viewModel.compositeAvatarViewModel!,
                            viewManager: viewManager,
+                           avatarManager: avatarManager,
                            viewType: .localVideofull)
                 .background(Color(StyleProvider.color.surface))
                 .edgesIgnoringSafeArea(safeAreaIgnoreArea)

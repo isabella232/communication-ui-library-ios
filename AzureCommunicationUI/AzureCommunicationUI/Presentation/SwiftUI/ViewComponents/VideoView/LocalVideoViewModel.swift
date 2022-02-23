@@ -11,7 +11,6 @@ class LocalVideoViewModel: ObservableObject {
     private let logger: Logger
     @Published var localVideoStreamId: String?
     @Published var displayName: String?
-    @Published var avatar: UIImage?
     @Published var isMuted: Bool = false
 
     var cameraSwitchButtonPipViewModel: IconButtonViewModel!
@@ -55,9 +54,6 @@ class LocalVideoViewModel: ObservableObject {
         }
         if displayName != localUserState.displayName {
             displayName = localUserState.displayName
-        }
-        if avatar != localUserState.avatar {
-            avatar = localUserState.avatar
         }
         self.cameraSwitchButtonPipViewModel.isDisabled = localUserState.cameraState.device == .switching
         self.cameraSwitchButtonFullViewModel.isDisabled = localUserState.cameraState.device == .switching

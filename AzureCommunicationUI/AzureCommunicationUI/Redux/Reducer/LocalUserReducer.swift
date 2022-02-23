@@ -18,11 +18,8 @@ struct LocalUserReducer: Reducer {
         var audioDeviceStatus = localUserState.audioState.device
         let displayName = localUserState.displayName
         var localVideoStreamIdentifier = localUserState.localVideoStreamIdentifier
-        var localAvatar = localUserState.avatar
 
         switch action {
-        case let action as LocalUserAction.LocalAvatarSet:
-            localAvatar = action.avatar
         case _ as LocalUserAction.CameraPreviewOnTriggered:
             cameraTransmissionStatus = .local
             cameraStatus = .pending
@@ -82,7 +79,6 @@ struct LocalUserReducer: Reducer {
         return LocalUserState(cameraState: cameraState,
                               audioState: audioState,
                               displayName: displayName,
-                              avatar: localAvatar,
                               localVideoStreamIdentifier: localVideoStreamIdentifier)
     }
 }

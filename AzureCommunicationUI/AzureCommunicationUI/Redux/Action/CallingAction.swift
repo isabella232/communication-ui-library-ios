@@ -32,11 +32,6 @@ struct ParticipantListUpdated: Action {
     let participantsInfoList: [ParticipantInfoModel]
 }
 
-struct ParticipantAvatarSet: Action {
-    let uniqueIdentifier: String
-    let image: UIImage
-}
-
 struct ErrorAction: Action {
     struct FatalErrorUpdated: Action {
         let error: ErrorEvent
