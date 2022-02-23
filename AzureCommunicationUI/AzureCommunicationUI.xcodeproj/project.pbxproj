@@ -127,11 +127,14 @@
 		5A31497E0DEBAB0256AD0B91 /* ErrorMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3146B0B684264EB57EDA69 /* ErrorMocking.swift */; };
 		5A314D26A09E235A6509C1C7 /* ACSCameraFacingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A31447C18BC49B691800C9D /* ACSCameraFacingExtension.swift */; };
 		5A314F66ED6C53A7EFC6EDA3 /* LobbyOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3148DD49F9B22A8E1C3D3F /* LobbyOverlayView.swift */; };
+		880E2AFA27BC1D9F00B302A1 /* AvatarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E2AF927BC1D9F00B302A1 /* AvatarManager.swift */; };
 		883D12DA2784F0B1005021E2 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D12D92784F0B1005021E2 /* StringConstants.swift */; };
 		88701EB42742D54C00660EAB /* ErrorReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88701EB32742D54C00660EAB /* ErrorReducerTests.swift */; };
 		88701EB8274C29C600660EAB /* CallingMiddlewareErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88701EB7274C29C600660EAB /* CallingMiddlewareErrorHandler.swift */; };
 		88A70180270E50D100F817B8 /* PopupModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A7017F270E50D100F817B8 /* PopupModalView.swift */; };
 		88B87C572755911B00290DD1 /* CallInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B87C562755911B00290DD1 /* CallInfoModel.swift */; };
+		88D605EC27B46DBB00B70B88 /* CompositeAvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D605EB27B46DBB00B70B88 /* CompositeAvatarViewModel.swift */; };
+		88E7341227BACECD000A53E4 /* ParticipantConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7341127BACECD000A53E4 /* ParticipantConfiguration.swift */; };
 		88F6EE1A2735F5CB001AD3E9 /* ErrorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6EE192735F5CB001AD3E9 /* ErrorReducer.swift */; };
 		88F6EE1C2735F8E8001AD3E9 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */; };
 		981ACABC2685459400CD6A40 /* IconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ACABB2685459400CD6A40 /* IconProvider.swift */; };
@@ -325,11 +328,14 @@
 		5A314F041B5D1869C41C242E /* DependencyContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyContainerTests.swift; sourceTree = "<group>"; };
 		5A314F62143032D2313CB616 /* GroupCallOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCallOptionsTests.swift; sourceTree = "<group>"; };
 		5CFD410F47A7F36849928867 /* Pods-AzureCommunicationUI-AzureCommunicationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AzureCommunicationUI-AzureCommunicationUITests.release.xcconfig"; path = "Target Support Files/Pods-AzureCommunicationUI-AzureCommunicationUITests/Pods-AzureCommunicationUI-AzureCommunicationUITests.release.xcconfig"; sourceTree = "<group>"; };
+		880E2AF927BC1D9F00B302A1 /* AvatarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarManager.swift; sourceTree = "<group>"; };
 		883D12D92784F0B1005021E2 /* StringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		88701EB32742D54C00660EAB /* ErrorReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReducerTests.swift; sourceTree = "<group>"; };
 		88701EB7274C29C600660EAB /* CallingMiddlewareErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingMiddlewareErrorHandler.swift; sourceTree = "<group>"; };
 		88A7017F270E50D100F817B8 /* PopupModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupModalView.swift; sourceTree = "<group>"; };
 		88B87C562755911B00290DD1 /* CallInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallInfoModel.swift; sourceTree = "<group>"; };
+		88D605EB27B46DBB00B70B88 /* CompositeAvatarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeAvatarViewModel.swift; sourceTree = "<group>"; };
+		88E7341127BACECD000A53E4 /* ParticipantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantConfiguration.swift; sourceTree = "<group>"; };
 		88F6EE192735F5CB001AD3E9 /* ErrorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReducer.swift; sourceTree = "<group>"; };
 		88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 		981ACABB2685459400CD6A40 /* IconProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconProvider.swift; sourceTree = "<group>"; };
@@ -686,6 +692,7 @@
 				1F2BED872631EB7900D98266 /* PermissionsManager.swift */,
 				A874EDC3266152AA003C7D92 /* AppLifeCycleManager.swift */,
 				1F8E0B77268D0EF000DDD18E /* CompositeErrorManager.swift */,
+				880E2AF927BC1D9F00B302A1 /* AvatarManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -856,6 +863,7 @@
 				1F47F78626E9E18E000AE4B7 /* DrawerContainerViewController.swift */,
 				9852C2D226EFCF3D00435252 /* PopupMenuViewController.swift */,
 				9852C2D426EFD19300435252 /* ParticipantsListViewController.swift */,
+				88D605EB27B46DBB00B70B88 /* CompositeAvatarViewModel.swift */,
 			);
 			path = Wrapper;
 			sourceTree = "<group>";
@@ -926,6 +934,7 @@
 		A83739AF26210CC200D46787 /* CallCompositeOptions */ = {
 			isa = PBXGroup;
 			children = (
+				88E7341127BACECD000A53E4 /* ParticipantConfiguration.swift */,
 				A8373993261F9D7600D46787 /* CallCompositeOptions.swift */,
 				1F94DADB2673E87700691D1E /* ThemeConfiguration.swift */,
 				1F94DAE02673EA9500691D1E /* CallCompositeEventsHandler.swift */,
@@ -1331,6 +1340,7 @@
 				982C2835267D15AF00427246 /* CompositeAvatar.swift in Sources */,
 				50FA460C26829162001844AC /* IconWithLabelButton.swift in Sources */,
 				50FA4623269CA1D4001844AC /* IconButtonViewModel.swift in Sources */,
+				88D605EC27B46DBB00B70B88 /* CompositeAvatarViewModel.swift in Sources */,
 				1F8E0B722684EBC100DDD18E /* CallingMiddlewareHandler.swift in Sources */,
 				1F2BEDA5263252E100D98266 /* Middleware.swift in Sources */,
 				98F13AA626E2E5D900145E5A /* CompositePopupMenu.swift in Sources */,
@@ -1407,6 +1417,7 @@
 				9823AB4926A13F220006266D /* PreviewAreaView.swift in Sources */,
 				50FA46212698EA7A001844AC /* IconWithLabelButtonViewModel.swift in Sources */,
 				50E2D69926F4FA05006B0EF4 /* ParticipantsListCellViewModel.swift in Sources */,
+				88E7341227BACECD000A53E4 /* ParticipantConfiguration.swift in Sources */,
 				1F09A11D26BB5B0D00BACED7 /* ArrayExtension.swift in Sources */,
 				A874EDC4266152AA003C7D92 /* AppLifeCycleManager.swift in Sources */,
 				1F8E0B78268D0EF000DDD18E /* CompositeErrorManager.swift in Sources */,
@@ -1415,6 +1426,7 @@
 				A8100387269F9DA70015C26E /* TeamsMeetingOptions.swift in Sources */,
 				981ACABC2685459400CD6A40 /* IconProvider.swift in Sources */,
 				1F2BEDCD26329E5600D98266 /* PermissionAction.swift in Sources */,
+				880E2AFA27BC1D9F00B302A1 /* AvatarManager.swift in Sources */,
 				1F94DADC2673E87700691D1E /* ThemeConfiguration.swift in Sources */,
 				1F94DAE426740BCB00691D1E /* LocalUserAction.swift in Sources */,
 				1F11D2BD2640BD9800D33838 /* CallingMiddleware.swift in Sources */,

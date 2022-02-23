@@ -42,8 +42,13 @@ final class DependencyContainer {
         register(NavigationRouter(store: resolve(),
                                   logger: resolve()) as NavigationRouter)
         register(ACSCompositeViewModelFactory(logger: resolve(),
-                                              store: resolve()) as CompositeViewModelFactory)
+                                              store: resolve(),
+                                              participantConfiguration:
+                                                callConfiguration.participantConfiguration)
+                 as CompositeViewModelFactory)
+        register(AvatarManager(store: resolve()) as AvatarManager)
         register(ACSCompositeViewFactory(logger: resolve(),
+                                         avatarManager: resolve(),
                                          videoViewManager: resolve(),
                                          compositeViewModelFactory: resolve()) as CompositeViewFactory)
     }

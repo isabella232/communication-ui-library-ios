@@ -20,6 +20,11 @@ public struct GroupCallOptions {
     /// The limit for string length is 256.
     public let displayName: String?
 
+    /// PersonaData object that represents the local user
+    ///
+    /// This object is used locally within the UI library and not sent to upstream to ACS
+    public let localPersona: PersonaData?
+
     /// Create an instance of a GroupCallOptions with options.
     /// - Parameters:
     ///   - communicationTokenCredential: The credential used for Azure Communication Service authentication.
@@ -27,10 +32,12 @@ public struct GroupCallOptions {
     ///   - displayName: The display name of the local participant for the call. The limit for string length is 256.
     public init(communicationTokenCredential: CommunicationTokenCredential,
                 groupId: UUID,
-                displayName: String) {
+                displayName: String,
+                localPersona: PersonaData? = nil) {
         self.communicationTokenCredential = communicationTokenCredential
         self.groupId = groupId
         self.displayName = displayName
+        self.localPersona = localPersona
     }
 
     /// Create an instance of a GroupCallOptions with options.
@@ -38,9 +45,11 @@ public struct GroupCallOptions {
     ///   - communicationTokenCredential: The credential used for Azure Communication Service authentication.
     ///   - groupId: The unique identifier for joining a specific group conversation.
     public init(communicationTokenCredential: CommunicationTokenCredential,
-                groupId: UUID) {
+                groupId: UUID,
+                localPersona: PersonaData? = nil) {
         self.communicationTokenCredential = communicationTokenCredential
         self.groupId = groupId
         self.displayName = nil
+        self.localPersona = localPersona
     }
 }

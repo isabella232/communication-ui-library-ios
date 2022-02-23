@@ -8,4 +8,6 @@ import AzureCommunicationCalling
 
 class CallCompositeEventsHandler {
     var didFail: ((ErrorEvent) -> Void)?
+    var onLocalParticipant: ((ICallComposite) -> Void)?
+    var onRemoteParticipant: ((CommunicationIdentifier, ICallComposite) -> Void)?
 }

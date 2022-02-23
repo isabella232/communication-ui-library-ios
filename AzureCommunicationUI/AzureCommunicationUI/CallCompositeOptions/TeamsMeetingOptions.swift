@@ -20,6 +20,11 @@ public struct TeamsMeetingOptions {
     /// The limit for string length is 256.
     public let displayName: String?
 
+    /// PersonaData object that represents the local user
+    ///
+    /// This object is used locally within the UI library and not sent to upstream to ACS
+    public let localPersona: PersonaData?
+
     /// Create an instance of a TeamsMeetingOptions with options.
     /// - Parameters:
     ///   - communicationTokenCredential: The credential used for Azure Communication Service authentication.
@@ -27,10 +32,12 @@ public struct TeamsMeetingOptions {
     ///   - displayName: The display name of the local participant for the call. The limit for string length is 256.
     public init(communicationTokenCredential: CommunicationTokenCredential,
                 meetingLink: String,
-                displayName: String) {
+                displayName: String,
+                localPersona: PersonaData? = nil) {
         self.communicationTokenCredential = communicationTokenCredential
         self.meetingLink = meetingLink
         self.displayName = displayName
+        self.localPersona = localPersona
     }
 
     /// Create an instance of a TeamsMeetingOptions with options.
@@ -38,9 +45,11 @@ public struct TeamsMeetingOptions {
     ///   - communicationTokenCredential: The credential used for Azure Communication Service authentication.
     ///   - meetingLink: A string representing the full URI of the teams meeting to join.
     public init(communicationTokenCredential: CommunicationTokenCredential,
-                meetingLink: String) {
+                meetingLink: String,
+                localPersona: PersonaData? = nil) {
         self.communicationTokenCredential = communicationTokenCredential
         self.meetingLink = meetingLink
         self.displayName = nil
+        self.localPersona = localPersona
     }
 }

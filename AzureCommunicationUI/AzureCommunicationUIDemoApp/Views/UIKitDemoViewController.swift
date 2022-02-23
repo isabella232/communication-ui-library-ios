@@ -127,12 +127,34 @@ class UIKitDemoViewController: UIViewController {
         print("UIkitDemoView error.code \(error.code)")
     }
 
+    func onLocalParticipant(_ composite: ICallComposite) {
+        let urlRequest = URL(string:
+"https://img.favpng.com/0/15/12/computer-icons-avatar-male-user-profile-png-favpng-ycgruUsQBHhtGyGKfw7fWCtgN.jpg")!
+        URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
+            if let error = error {
+                print(error)
+            } else if let data = data {
+                let avatar = UIImage(data: data)
+                let persona = PersonaData(displayName: "", avatar: avatar)
+                composite.setLocalParticipantPersona(for: persona)
+            }
+        }.resume()
+    }
+
+    func onRemoteParticipant(_ identifier: CommunicationIdentifier,
+                             composite: ICallComposite) {
+        
+    }
+
     func startExperience(with link: String) {
-        let callCompositeOptions = CallCompositeOptions(themeConfiguration: TeamsBrandConfig())
+        let callCompositeOptions = CallCompositeOptions(themeConfiguration: TeamsBrandConfig(),
+                                                        localConfiguration: LocalConfig(),
+                                                        participantConfiguration: AvatarConfig())
 
         let callComposite = CallComposite(withOptions: callCompositeOptions)
 
-        callComposite.setTarget(didFail: didFail)
+        callComposite.setTarget(didFail: didFail,
+                                onLocalParticipant: onLocalParticipant)
 
         if let communicationTokenCredential = try? getTokenCredential() {
             switch selectedMeetingType {

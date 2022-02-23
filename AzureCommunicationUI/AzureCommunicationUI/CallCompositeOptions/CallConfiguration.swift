@@ -9,6 +9,7 @@ import AzureCommunicationCommon
 struct CallConfiguration {
     let communicationTokenCredential: CommunicationTokenCredential
     let displayName: String?
+    let participantConfiguration: ParticipantConfiguration?
     let groupId: UUID?
     let meetingLink: String?
     let compositeCallType: CompositeCallType
@@ -16,9 +17,11 @@ struct CallConfiguration {
 
     init(communicationTokenCredential: CommunicationTokenCredential,
          groupId: UUID,
-         displayName: String?) {
+         displayName: String?,
+         participantConfiguration: ParticipantConfiguration? = nil) {
         self.communicationTokenCredential = communicationTokenCredential
         self.displayName = displayName
+        self.participantConfiguration = participantConfiguration
         self.groupId = groupId
         self.meetingLink = nil
         self.compositeCallType = .groupCall
@@ -27,9 +30,11 @@ struct CallConfiguration {
 
     init(communicationTokenCredential: CommunicationTokenCredential,
          meetingLink: String,
-         displayName: String?) {
+         displayName: String?,
+         participantConfiguration: ParticipantConfiguration? = nil) {
         self.communicationTokenCredential = communicationTokenCredential
         self.displayName = displayName
+        self.participantConfiguration = participantConfiguration
         self.groupId = nil
         self.meetingLink = meetingLink
         self.compositeCallType = .teamsMeeting

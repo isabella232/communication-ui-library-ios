@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct CallingAction {
     struct CallStartRequested: Action {}
@@ -29,6 +30,11 @@ struct CallingAction {
 
 struct ParticipantListUpdated: Action {
     let participantsInfoList: [ParticipantInfoModel]
+}
+
+struct ParticipantAvatarSet: Action {
+    let uniqueIdentifier: String
+    let image: UIImage
 }
 
 struct ErrorAction: Action {

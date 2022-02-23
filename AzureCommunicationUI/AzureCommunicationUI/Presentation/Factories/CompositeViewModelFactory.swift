@@ -30,6 +30,7 @@ protocol CompositeViewModelFactory {
     func makeAudioDeviceListViewModel(dispatchAction: @escaping ActionDispatch,
                                       localUserState: LocalUserState) -> AudioDeviceListViewModel
     func makeErrorInfoViewModel() -> ErrorInfoViewModel
+    func makeCompositeAvatarViewModel() -> CompositeAvatarViewModel?
 
     // MARK: CallingViewModels
     func makeControlBarViewModel(dispatchAction: @escaping ActionDispatch,
@@ -54,11 +55,14 @@ class ACSCompositeViewModelFactory: CompositeViewModelFactory {
 
     private weak var setupViewModel: SetupViewModel?
     private weak var callingViewModel: CallingViewModel?
+    private var participantConfiguration: ParticipantConfiguration?
 
     init(logger: Logger,
-         store: Store<AppState>) {
+         store: Store<AppState>,
+         participantConfiguration: ParticipantConfiguration? = nil) {
         self.logger = logger
         self.store = store
+        self.participantConfiguration = participantConfiguration
     }
 
     // MARK: CompositeViewModels
@@ -130,6 +134,13 @@ class ACSCompositeViewModelFactory: CompositeViewModelFactory {
     }
     func makeErrorInfoViewModel() -> ErrorInfoViewModel {
         ErrorInfoViewModel()
+    }
+    func makeCompositeAvatarViewModel() -> CompositeAvatarViewModel? {
+        guard let participantConfiguration = participantConfiguration else {
+            return nil
+        }
+
+        return CompositeAvatarViewModel(participantConfiguration)
     }
 
     // MARK: CallingViewModels

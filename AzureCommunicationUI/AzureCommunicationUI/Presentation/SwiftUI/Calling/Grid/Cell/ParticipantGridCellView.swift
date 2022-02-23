@@ -53,17 +53,20 @@ struct ParticipantGridCellView: View {
               !videoStreamId.isEmpty else {
             return nil
         }
-        let userId = viewModel.participantIdentifier
-        let remoteParticipantVideoViewId = RemoteParticipantVideoViewId(userIdentifier: userId,
-                                                                        videoStreamIdentifier: videoStreamId)
-
-        return getRemoteParticipantRendererView(remoteParticipantVideoViewId)
+        if let userId = viewModel.participantIdentifier.stringValue {
+            let remoteParticipantVideoViewId = RemoteParticipantVideoViewId(userIdentifier: userId,
+                                                                            videoStreamIdentifier: videoStreamId)
+            return getRemoteParticipantRendererView(remoteParticipantVideoViewId)
+        } else {
+            return nil
+        }
     }
 
     var avatarView: some View {
         VStack(alignment: .center, spacing: 5) {
             CompositeAvatar(displayName: $viewModel.displayName,
-                            isSpeaking: viewModel.isSpeaking && !viewModel.isMuted)
+                            isSpeaking: viewModel.isSpeaking && !viewModel.isMuted,
+                            avatarImage: viewModel.avatarModel.avatarImage)
                 .frame(width: avatarSize, height: avatarSize)
             Spacer().frame(height: 10)
             ParticipantTitleView(displayName: $viewModel.displayName,

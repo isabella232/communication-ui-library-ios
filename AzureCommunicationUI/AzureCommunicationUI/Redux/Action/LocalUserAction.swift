@@ -5,8 +5,13 @@
 
 import Foundation
 import Combine
+import UIKit
 
 struct LocalUserAction {
+    struct LocalAvatarSet: Action {
+        var avatar: UIImage
+    }
+
     struct CameraPreviewOnTriggered: Action {}
     struct CameraOnTriggered: Action {}
     struct CameraOnSucceeded: Action {

@@ -98,7 +98,7 @@ class CallingSDKEventsHandler: NSObject, CallingSDKEventsHandling {
         remoteParticipantsInfoList =
             remoteParticipantsInfoList.filter { infoModel in
                 !remoteParticipants.contains(where: {
-                    $0.identifier.stringValue == infoModel.userIdentifier
+                    $0.identifier.stringValue == infoModel.userIdentifier.stringValue
                 })
             }
         participantsInfoListSubject.send(remoteParticipantsInfoList)
@@ -128,7 +128,7 @@ class CallingSDKEventsHandler: NSObject, CallingSDKEventsHandling {
         var remoteParticipantsInfoList = participantsInfoListSubject.value
         if let remoteParticipant = remoteParticipants.value(forKey: userIdentifier),
            let index = remoteParticipantsInfoList.firstIndex(where: {
-               $0.userIdentifier == userIdentifier
+               $0.userIdentifier.stringValue == userIdentifier
            }) {
             let speakingStamp = remoteParticipantsInfoList[index].recentSpeakingStamp
             let timeStamp = updateSpeakingStamp ? Date() : speakingStamp

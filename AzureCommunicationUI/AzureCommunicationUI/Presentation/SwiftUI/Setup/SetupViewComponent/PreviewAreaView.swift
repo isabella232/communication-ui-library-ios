@@ -23,6 +23,7 @@ struct PreviewAreaView: View {
 
     var localVideoPreviewView: some View {
         return LocalVideoView(viewModel: viewModel.localVideoViewModel,
+                              compositeAvatarViewModel: viewModel.compositeAvatarViewModel,
                               viewManager: viewManager,
                               viewType: .preview)
     }

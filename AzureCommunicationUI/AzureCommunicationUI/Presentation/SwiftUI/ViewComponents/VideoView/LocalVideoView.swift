@@ -5,6 +5,7 @@
 
 import SwiftUI
 import FluentUI
+import AzureCommunicationCommon
 
 enum LocalVideoViewType {
     case preview
@@ -56,8 +57,10 @@ enum LocalVideoViewType {
 
 struct LocalVideoView: View {
     @ObservedObject var viewModel: LocalVideoViewModel
+    @ObservedObject var compositeAvatarViewModel: CompositeAvatarViewModel
     let viewManager: VideoViewManager
     let viewType: LocalVideoViewType
+    let localIdentifier = CommunicationUserIdentifier.init("")
     @Environment(\.screenSizeClass) var screenSizeClass: ScreenSizeClassType
 
     var body: some View {
@@ -79,7 +82,8 @@ struct LocalVideoView: View {
                     VStack(alignment: .center, spacing: 5) {
                         CompositeAvatar(displayName: $viewModel.displayName,
                                         isSpeaking: false,
-                                        avatarSize: viewType.avatarSize)
+                                        avatarSize: viewType.avatarSize,
+                                        avatarImage: viewModel.avatar)
                         if viewType.showDisplayNameTitleView {
                             Spacer().frame(height: 10)
                             ParticipantTitleView(displayName: $viewModel.displayName,

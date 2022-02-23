@@ -19,6 +19,7 @@ class CallingViewModel: ObservableObject {
     var controlBarViewModel: ControlBarViewModel!
     var infoHeaderViewModel: InfoHeaderViewModel!
     let localVideoViewModel: LocalVideoViewModel
+    let compositeAvatarViewModel: CompositeAvatarViewModel?
     let participantGridsViewModel: ParticipantGridViewModel
     let bannerViewModel: BannerViewModel
 
@@ -30,6 +31,7 @@ class CallingViewModel: ObservableObject {
         self.store = store
         let actionDispatch: ActionDispatch = store.dispatch
         localVideoViewModel = compositeViewModelFactory.makeLocalVideoViewModel(dispatchAction: actionDispatch)
+        compositeAvatarViewModel = compositeViewModelFactory.makeCompositeAvatarViewModel()
         participantGridsViewModel = compositeViewModelFactory.makeParticipantGridsViewModel()
         bannerViewModel = compositeViewModelFactory.makeBannerViewModel()
 

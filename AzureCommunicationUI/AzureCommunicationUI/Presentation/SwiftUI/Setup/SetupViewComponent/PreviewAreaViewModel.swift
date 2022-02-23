@@ -12,10 +12,12 @@ class PreviewAreaViewModel: ObservableObject {
     @Published var audioPermission: AppPermission.Status = .unknown
 
     let localVideoViewModel: LocalVideoViewModel!
+    let compositeAvatarViewModel: CompositeAvatarViewModel!
 
     init(compositeViewModelFactory: CompositeViewModelFactory,
          dispatchAction: @escaping ActionDispatch) {
         localVideoViewModel = compositeViewModelFactory.makeLocalVideoViewModel(dispatchAction: dispatchAction)
+        compositeAvatarViewModel = compositeViewModelFactory.makeCompositeAvatarViewModel()
     }
 
     func getPermissionWarningIcon() -> CompositeIcon {

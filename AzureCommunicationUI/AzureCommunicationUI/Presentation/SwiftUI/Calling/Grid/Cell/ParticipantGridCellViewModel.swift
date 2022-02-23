@@ -5,6 +5,8 @@
 
 import Foundation
 import Combine
+import UIKit
+import AzureCommunicationCommon
 
 class ParticipantGridCellViewModel: ObservableObject, Identifiable {
     let id = UUID()
@@ -13,7 +15,8 @@ class ParticipantGridCellViewModel: ObservableObject, Identifiable {
     @Published var displayName: String?
     @Published var isSpeaking: Bool
     @Published var isMuted: Bool
-    var participantIdentifier: String
+    var participantIdentifier: CommunicationIdentifier
+    let avatarModel: CompositeAvatarViewModel
 
     init(compositeViewModelFactory: CompositeViewModelFactory,
          participantModel: ParticipantInfoModel) {
@@ -21,7 +24,9 @@ class ParticipantGridCellViewModel: ObservableObject, Identifiable {
         self.isSpeaking = participantModel.isSpeaking
         self.participantIdentifier = participantModel.userIdentifier
         self.isMuted = participantModel.isMuted
+        self.avatarModel = compositeViewModelFactory.makeCompositeAvatarViewModel()!
         self.videoStreamId = getDisplayingVideoStreamId(participantModel)
+        self.avatarModel.fetchAvatarImage(for: participantModel.userIdentifier)
     }
 
     func update(participantModel: ParticipantInfoModel) {

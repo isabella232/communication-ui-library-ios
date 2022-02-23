@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LocalUserState: ReduxState {
     enum CameraOperationalStatus: Equatable {
@@ -120,6 +121,7 @@ class LocalUserState: ReduxState {
     let cameraState: CameraState
     let audioState: AudioState
     let displayName: String?
+    let avatar: UIImage?
     let localVideoStreamIdentifier: String?
 
     init(cameraState: CameraState = CameraState(operation: .off,
@@ -128,10 +130,12 @@ class LocalUserState: ReduxState {
          audioState: AudioState = AudioState(operation: .off,
                                              device: .receiverSelected),
          displayName: String? = nil,
+         avatar: UIImage? = nil,
          localVideoStreamIdentifier: String? = nil) {
         self.cameraState = cameraState
         self.audioState = audioState
         self.displayName = displayName
+        self.avatar = avatar
         self.localVideoStreamIdentifier = localVideoStreamIdentifier
     }
 }

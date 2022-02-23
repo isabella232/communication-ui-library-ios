@@ -18,10 +18,11 @@ extension RemoteParticipant {
         let screenShareVideoStreamModel = videoInfoModels.first(where: {$0.mediaStreamType == .screenSharing})
 
         return ParticipantInfoModel(displayName: displayName,
+                                    avatar: nil,
                                     isSpeaking: isSpeaking,
                                     isMuted: isMuted,
                                     isRemoteUser: true,
-                                    userIdentifier: self.identifier.stringValue ?? "",
+                                    userIdentifier: self.identifier,
                                     recentSpeakingStamp: recentSpeakingStamp,
                                     screenShareVideoStreamModel: screenShareVideoStreamModel,
                                     cameraVideoStreamModel: cameraVideoStreamModel)

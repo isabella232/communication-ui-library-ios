@@ -9,6 +9,7 @@ import FluentUI
 struct CallingView: View {
     @ObservedObject var viewModel: CallingViewModel
     let viewManager: VideoViewManager
+    let avatarManager: AvatarManager
 
     @Environment(\.horizontalSizeClass) var widthSizeClass: UserInterfaceSizeClass?
     @Environment(\.verticalSizeClass) var heightSizeClass: UserInterfaceSizeClass?
@@ -77,6 +78,7 @@ struct CallingView: View {
 
         return Group {
             LocalVideoView(viewModel: viewModel.localVideoViewModel,
+                           compositeAvatarViewModel: viewModel.compositeAvatarViewModel!,
                            viewManager: viewManager,
                            viewType: .localVideoPip)
                 .frame(width: frameWidth, height: frameHeight, alignment: .center)
@@ -113,6 +115,7 @@ struct CallingView: View {
     var localVideoFullscreenView: some View {
         return Group {
             LocalVideoView(viewModel: viewModel.localVideoViewModel,
+                           compositeAvatarViewModel: viewModel.compositeAvatarViewModel!,
                            viewManager: viewManager,
                            viewType: .localVideofull)
                 .background(Color(StyleProvider.color.surface))

@@ -8,12 +8,20 @@ import SwiftUI
 import FluentUI
 import AzureCommunicationCalling
 
+public protocol ICallComposite {
+    func setLocalParticipantPersona(for persona: PersonaData)
+    func setRemoteParticipantsPersona(for identifier: String, persona: PersonaData)
+}
+
 /// The main class representing the entry point for the Call Composite.
-public class CallComposite {
+public class CallComposite: ICallComposite {
     private var logger: Logger?
     private let themeConfiguration: ThemeConfiguration?
+    private let localConfiguration: LocalConfiguration?
+    private let participantConfiguration: ParticipantConfiguration?
     private let callCompositeEventsHandler = CallCompositeEventsHandler()
     private var errorManager: ErrorManager?
+    private var avatarManager: AvatarManager?
     private var lifeCycleManager: UIKitAppLifeCycleManager?
     private var permissionManager: AppPermissionsManager?
     private var audioSessionManager: AppAudioSessionManager?
@@ -22,12 +30,18 @@ public class CallComposite {
     /// - Parameter options: The CallCompositeOptions used to configure the experience.
     public init(withOptions options: CallCompositeOptions) {
         themeConfiguration = options.themeConfiguration
+        localConfiguration = options.localConfiguration
+        participantConfiguration = options.participantConfiguration
     }
 
     /// Assign closure to execute when an error occurs inside Call Composite.
     /// - Parameter action: The closure returning the error thrown from Call Composite.
-    public func setTarget(didFail action: ((ErrorEvent) -> Void)?) {
+    public func setTarget(didFail action: ((ErrorEvent) -> Void)? = nil,
+                          onLocalParticipant: ((ICallComposite) -> Void)? = nil,
+                          onRemoteParticipant: ((CommunicationIdentifier, ICallComposite) -> Void)? = nil) {
         callCompositeEventsHandler.didFail = action
+        callCompositeEventsHandler.onLocalParticipant = onLocalParticipant
+        callCompositeEventsHandler.onRemoteParticipant = onRemoteParticipant
     }
 
     deinit {
@@ -48,6 +62,7 @@ public class CallComposite {
         setupManagers(store: dependencyContainer.resolve(),
                       containerHostingController: toolkitHostingController,
                       logger: dependencyContainer.resolve())
+        avatarManager = dependencyContainer.resolve() as AvatarManager
         present(toolkitHostingController)
     }
 
@@ -57,7 +72,8 @@ public class CallComposite {
         let callConfiguration = CallConfiguration(
             communicationTokenCredential: options.communicationTokenCredential,
             groupId: options.groupId,
-            displayName: options.displayName)
+            displayName: options.displayName,
+            participantConfiguration: participantConfiguration)
 
         launch(callConfiguration)
     }
@@ -68,7 +84,8 @@ public class CallComposite {
         let callConfiguration = CallConfiguration(
             communicationTokenCredential: options.communicationTokenCredential,
             meetingLink: options.meetingLink,
-            displayName: options.displayName)
+            displayName: options.displayName,
+            participantConfiguration: participantConfiguration)
 
         launch(callConfiguration)
     }
@@ -89,6 +106,12 @@ public class CallComposite {
         let audioSessionManager = AppAudioSessionManager(store: store,
                                                          logger: logger)
         self.audioSessionManager = audioSessionManager
+
+        guard let onLocalParticipant = callCompositeEventsHandler.onLocalParticipant else {
+            return
+        }
+
+        onLocalParticipant(self)
     }
 
     private func cleanUpManagers() {
@@ -145,4 +168,14 @@ public class CallComposite {
 
         return !hasCallComposite
     }
+
+    public func setLocalParticipantPersona(for persona: PersonaData) {
+        guard let avatarManager = avatarManager,
+              let avatar = persona.avatar else {
+            return
+        }
+        avatarManager.setLocalAvatar(avatar)
+    }
+    public func setRemoteParticipantsPersona(for identifier: String, persona: PersonaData) { }
+
 }

@@ -37,8 +37,12 @@ struct ParticipantGridView: View {
             guard let videoStreamIdentifier = screenShareVideoStreamIdentifier ?? cameraVideoStreamIdentifier else {
                 return nil
             }
-            return RemoteParticipantVideoViewId(userIdentifier: $0.userIdentifier,
-                                                videoStreamIdentifier: videoStreamIdentifier)
+            if let identifier = $0.userIdentifier.stringValue {
+                return RemoteParticipantVideoViewId(userIdentifier: identifier,
+                                                    videoStreamIdentifier: videoStreamIdentifier)
+            } else {
+                return nil
+            }
         }
 
         videoViewManager.updateDisplayedRemoteVideoStream(videoCacheIds)

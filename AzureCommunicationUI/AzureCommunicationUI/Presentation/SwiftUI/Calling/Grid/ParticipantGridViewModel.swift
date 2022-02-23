@@ -59,12 +59,12 @@ class ParticipantGridViewModel: ObservableObject {
         var localCacheInfoModelArr = displayedParticipantInfoModelArr
         let infoModelToRemove = localCacheInfoModelArr.filter { old in
             !newInfoModels.contains(where: { new in
-                new.userIdentifier == old.userIdentifier
+                new.userIdentifier.stringValue == old.userIdentifier.stringValue
             })
         }
         let infoModelToAdd = newInfoModels.filter { new in
             !localCacheInfoModelArr.contains(where: { old in
-                new.userIdentifier == old.userIdentifier
+                new.userIdentifier.stringValue == old.userIdentifier.stringValue
             })
         }
 
@@ -78,7 +78,7 @@ class ParticipantGridViewModel: ObservableObject {
         // Otherwise, we keep those existed participant in same position when there is any update
         for (index, item) in infoModelToRemove.enumerated() {
             if let removeIndex = localCacheInfoModelArr.firstIndex(where: {
-                $0.userIdentifier == item.userIdentifier
+                $0.userIdentifier.stringValue == item.userIdentifier.stringValue
             }) {
                 localCacheInfoModelArr[removeIndex] = infoModelToAdd[index]
                 replacedIndex.append(removeIndex)
@@ -88,7 +88,8 @@ class ParticipantGridViewModel: ObservableObject {
         // To update existed participantInfoModel
         for (index, item) in localCacheInfoModelArr.enumerated() {
             if !replacedIndex.contains(index),
-               let newItem = newInfoModels.first(where: {$0.userIdentifier == item.userIdentifier}) {
+               let newItem = newInfoModels.first(where: {
+                   $0.userIdentifier.stringValue == item.userIdentifier.stringValue}) {
                 localCacheInfoModelArr[index] = newItem
             }
         }
@@ -118,7 +119,7 @@ class ParticipantGridViewModel: ObservableObject {
         var newCellViewModelArr = [ParticipantGridCellViewModel]()
         for infoModel in displayedRemoteParticipants {
             if let viewModel = participantsCellViewModelArr.first(where: {
-                $0.participantIdentifier == infoModel.userIdentifier
+                $0.participantIdentifier.stringValue == infoModel.userIdentifier.stringValue
             }) {
                 viewModel.update(participantModel: infoModel)
                 newCellViewModelArr.append(viewModel)
