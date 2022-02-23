@@ -37,7 +37,7 @@ struct ErrorAction: Action {
         let error: ErrorEvent
     }
 
-    struct CallStateErrorUpdated: Action {
+    struct StatusErrorAndCallReset: Action {
         let error: ErrorEvent
     }
 }

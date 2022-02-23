@@ -16,6 +16,7 @@ class CallingViewModelTests: XCTestCase {
     private let timeout: TimeInterval = 10.0
 
     override func setUp() {
+        super.setUp()
         cancellable = CancelBag()
 
         storeFactory = StoreFactoryMocking()
@@ -51,23 +52,6 @@ class CallingViewModelTests: XCTestCase {
         callingViewModel.dismissConfirmLeaveOverlay()
 
         XCTAssertFalse(callingViewModel.isConfirmLeaveOverlayDisplayed)
-    }
-
-    func test_callingViewModel_startCall_when_currentCallingStateIsNone_shouldStartCall() {
-        let expectation = XCTestExpectation(description: "Verify Call Start is Requested")
-
-        callingViewModel.startCall()
-
-        storeFactory.store.$state
-            .dropFirst(1)
-            .sink { [weak self] _ in
-                XCTAssertEqual(self?.storeFactory.actions.count, 1)
-                XCTAssertTrue(self?.storeFactory.actions.first is CallingAction.CallStartRequested)
-
-                expectation.fulfill()
-            }.store(in: cancellable)
-
-        wait(for: [expectation], timeout: timeout)
     }
 
     func test_callingViewModel_endCall_when_confirmLeaveOverlayIsDisplayed_shouldEndCall() {
