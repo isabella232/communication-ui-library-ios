@@ -24,7 +24,7 @@ struct SwiftUIDemoView: View {
             meetingSelector
             startExperienceButton
             Spacer()
-        }
+        }.preferredColorScheme(.dark)
         .padding()
         .alert(isPresented: $isErrorDisplayed) {
             Alert(

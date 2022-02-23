@@ -30,7 +30,6 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
         self.environmentProperties = environmentProperties
         super.init(rootView: environmentRoot)
         subscribeEnvironmentProperties()
-//        self.view.window?.overrideUserInterfaceStyle = .dark
     }
 
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -40,6 +39,8 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
+        self.view.window!.overrideUserInterfaceStyle = .dark
+//        overrideUserInterfaceStyle = .dark
     }
     override func viewDidDisappear(_ animated: Bool) {
         resetUIDeviceSetup()

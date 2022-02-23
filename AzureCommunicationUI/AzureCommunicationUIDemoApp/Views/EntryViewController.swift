@@ -79,7 +79,7 @@ class EntryViewController: UIViewController {
     }
 
     @objc func onSwiftUIPressed() {
-        let swiftUIDemoView = SwiftUIDemoView(envConfigSubject: envConfigSubject)
+        let swiftUIDemoView = SwiftUIDemoView(envConfigSubject: envConfigSubject).preferredColorScheme(.dark)
         let swiftUIDemoViewHostingController = UIHostingController(rootView: swiftUIDemoView)
         swiftUIDemoViewHostingController.modalPresentationStyle = .fullScreen
         present(swiftUIDemoViewHostingController, animated: true, completion: nil)
