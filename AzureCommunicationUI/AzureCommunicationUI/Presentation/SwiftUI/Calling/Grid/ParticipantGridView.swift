@@ -4,10 +4,12 @@
 //
 
 import SwiftUI
+import AzureCommunicationCommon
 
 struct ParticipantGridView: View {
     let viewModel: ParticipantGridViewModel
     let videoViewManager: VideoViewManager
+    let avatarManager: AvatarManager
     let screenSize: ScreenSizeClassType
     @State var gridsCount: Int = 0
 
@@ -15,6 +17,7 @@ struct ParticipantGridView: View {
         return Group {
             ParticipantGridLayoutView(cellViewModels: viewModel.participantsCellViewModelArr,
                                       getRemoteParticipantRendererView: getRemoteParticipantRendererView(videoViewId:),
+                                      getRemoteParticipantAvater: getRemoteParticipantAvatar(for:),
                                       screenSize: screenSize)
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .id(gridsCount)
@@ -23,11 +26,16 @@ struct ParticipantGridView: View {
             }
             .onReceive(viewModel.$displayedParticipantInfoModelArr) {
                 updateVideoViewManager(displayedRemoteInfoModelArr: $0)
+                updateParticipantAvatarManager(displayedRemoteInfoModelArr: $0)
             }
     }
 
     func getRemoteParticipantRendererView(videoViewId: RemoteParticipantVideoViewId) -> UIView? {
         return videoViewManager.getRemoteParticipantVideoRendererView(videoViewId)
+    }
+
+    func getRemoteParticipantAvatar(for identifier: CommunicationIdentifier) -> UIImage? {
+        return avatarManager.getRemoteAvatar(for: identifier)
     }
 
     func updateVideoViewManager(displayedRemoteInfoModelArr: [ParticipantInfoModel]) {
@@ -48,4 +56,12 @@ struct ParticipantGridView: View {
         videoViewManager.updateDisplayedRemoteVideoStream(videoCacheIds)
 
     }
+
+    func updateParticipantAvatarManager(displayedRemoteInfoModelArr: [ParticipantInfoModel]) {
+        for participantModel in displayedRemoteInfoModelArr {
+            let identifier = participantModel.userIdentifier
+            avatarManager.onRemoteParticipantReady(for: identifier)
+        }
+    }
+
 }

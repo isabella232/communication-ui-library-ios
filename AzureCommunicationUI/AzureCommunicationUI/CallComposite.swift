@@ -38,7 +38,7 @@ public class CallComposite: ICallComposite {
     /// - Parameter action: The closure returning the error thrown from Call Composite.
     public func setTarget(didFail action: ((ErrorEvent) -> Void)? = nil,
                           onLocalParticipant: ((ICallComposite) -> Void)? = nil,
-                          onRemoteParticipant: ((CommunicationIdentifier, ICallComposite) -> Void)? = nil) {
+                          onRemoteParticipant: ((CommunicationIdentifier, AvatarManager) -> Void)? = nil) {
         callCompositeEventsHandler.didFail = action
         callCompositeEventsHandler.onLocalParticipant = onLocalParticipant
         callCompositeEventsHandler.onRemoteParticipant = onRemoteParticipant
@@ -53,7 +53,8 @@ public class CallComposite: ICallComposite {
         logger = dependencyContainer.resolve() as Logger
         logger?.debug("launch composite experience")
 
-        dependencyContainer.registerDependencies(callConfiguration)
+        dependencyContainer.registerDependencies(callConfiguration,
+                                                 callCompositeEventsHandler: callCompositeEventsHandler)
 
         setupColorTheming()
         let toolkitHostingController = makeToolkitHostingController(router: dependencyContainer.resolve(),

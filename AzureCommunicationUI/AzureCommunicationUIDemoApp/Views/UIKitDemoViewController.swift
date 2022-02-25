@@ -145,8 +145,31 @@ class UIKitDemoViewController: UIViewController {
     }
 
     func onRemoteParticipant(_ identifier: CommunicationIdentifier,
-                             composite: ICallComposite) {
-        
+                             avatarManager: AvatarManager) {
+        /*        switch identifier {
+                case is CommunicationUserIdentifier:
+                    // request an avatar for communication user
+                case is UnknownIdentifier:
+                    // request an avatar for unknown user
+                case is PhoneNumberIdentifier:
+                    // request an avatar for phone number user
+                case is MicrosoftTeamsUserIdentifier:
+                    // request an avatar for teams user
+                default:
+                    // return a fallback avatar
+                }
+        */
+                let urlRequest = URL(string:
+        "https://yt3.ggpht.com/ytc/AKedOLQf5MBcFSDzo2FeZIXSqafCvdRMGjW2C-0j8RpD=s900-c-k-c0x00ffffff-no-rj")!
+                URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
+                    if let error = error {
+                        print(error)
+                    } else if let data = data {
+                        let avatar = UIImage(data: data)
+                        let persona = PersonaData(displayName: "", avatar: avatar)
+                        avatarManager.setRemoteAvatar(for: identifier, persona: persona)
+                    }
+                }.resume()
     }
 
     func startExperience(with link: String) {
@@ -157,7 +180,8 @@ class UIKitDemoViewController: UIViewController {
         let callComposite = CallComposite(withOptions: callCompositeOptions)
 
         callComposite.setTarget(didFail: didFail,
-                                onLocalParticipant: onLocalParticipant)
+                                onLocalParticipant: onLocalParticipant,
+                                onRemoteParticipant: onRemoteParticipant)
 
         if let communicationTokenCredential = try? getTokenCredential() {
             switch selectedMeetingType {

@@ -30,7 +30,8 @@ final class DependencyContainer {
         register(DefaultLogger() as Logger)
     }
 
-    func registerDependencies(_ callConfiguration: CallConfiguration) {
+    func registerDependencies(_ callConfiguration: CallConfiguration,
+                              callCompositeEventsHandler: CallCompositeEventsHandler) {
         register(CallingSDKEventsHandler(logger: resolve()) as CallingSDKEventsHandling)
         register(ACSCallingSDKWrapper(logger: resolve(),
                                       callingEventsHandler: resolve(),
@@ -46,7 +47,8 @@ final class DependencyContainer {
                                               participantConfiguration:
                                                 callConfiguration.participantConfiguration)
                  as CompositeViewModelFactory)
-        register(AvatarManager(store: resolve()) as AvatarManager)
+        register(AvatarManager(store: resolve(),
+                               callCompositeEventHandler: callCompositeEventsHandler) as AvatarManager)
         register(ACSCompositeViewFactory(logger: resolve(),
                                          avatarManager: resolve(),
                                          videoViewManager: resolve(),

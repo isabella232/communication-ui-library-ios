@@ -6,10 +6,12 @@
 import SwiftUI
 import FluentUI
 import Combine
+import AzureCommunicationCommon
 
 struct ParticipantGridCellView: View {
     @ObservedObject var viewModel: ParticipantGridCellViewModel
     let getRemoteParticipantRendererView: (RemoteParticipantVideoViewId) -> UIView?
+    let getRemoteParticipantAvatar: (CommunicationIdentifier) -> UIImage?
     @State var displayedVideoStreamId: String?
     @State var isVideoChanging: Bool = false
     let avatarSize: CGFloat = 56
@@ -62,10 +64,15 @@ struct ParticipantGridCellView: View {
         }
     }
 
+    func getAvatar() -> UIImage? {
+        return  getRemoteParticipantAvatar(viewModel.participantIdentifier)
+    }
+
     var avatarView: some View {
         VStack(alignment: .center, spacing: 5) {
             CompositeAvatar(displayName: $viewModel.displayName,
-                            isSpeaking: viewModel.isSpeaking && !viewModel.isMuted)
+                            isSpeaking: viewModel.isSpeaking && !viewModel.isMuted,
+                            avatarImage: getAvatar())
                 .frame(width: avatarSize, height: avatarSize)
             Spacer().frame(height: 10)
             ParticipantTitleView(displayName: $viewModel.displayName,
