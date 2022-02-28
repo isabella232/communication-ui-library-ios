@@ -17,6 +17,7 @@ public class CallComposite {
     private var lifeCycleManager: UIKitAppLifeCycleManager?
     private var permissionManager: AppPermissionsManager?
     private var audioSessionManager: AppAudioSessionManager?
+    private var callSystemManager: CallSystemManager?
 
     /// Create an instance of CallComposite with options.
     /// - Parameter options: The CallCompositeOptions used to configure the experience.
@@ -89,6 +90,10 @@ public class CallComposite {
         let audioSessionManager = AppAudioSessionManager(store: store,
                                                          logger: logger)
         self.audioSessionManager = audioSessionManager
+
+//        let callSystemManager = CallKitManager(store: store,
+//                                               logger: logger)
+//        self.callSystemManager = callSystemManager
     }
 
     private func cleanUpManagers() {
@@ -96,6 +101,7 @@ public class CallComposite {
         self.lifeCycleManager = nil
         self.permissionManager = nil
         self.audioSessionManager = nil
+        self.callSystemManager = nil
     }
 
     private func makeToolkitHostingController(router: NavigationRouter,

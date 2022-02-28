@@ -61,6 +61,46 @@ class AppAudioSessionManager: AudioSessionManager {
                                                selector: #selector(handleRouteChange),
                                                name: AVAudioSession.routeChangeNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleInterruption),
+                                               name: AVAudioSession.interruptionNotification,
+                                               object: AVAudioSession.sharedInstance())
+    }
+
+    @objc func handleInterruption(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
+                print("---------------handle interruption failed")
+                return
+        }
+
+        // Switch over the interruption type.
+        switch type {
+
+        case .began:
+            // An interruption began. Update the UI as necessary.
+            print("---------------An interruption began")
+        case .ended:
+           // An interruption ended. Resume playback, if appropriate.
+            print("---------------An interruption ended")
+
+            guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else {
+                return
+            }
+            let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+            if options.contains(.shouldResume) {
+                print("---------------Resume playback")
+
+                // An interruption ended. Resume playback.
+            } else {
+                print("---------------Don't resume playback")
+
+                // An interruption ended. Don't resume playback.
+            }
+
+        default: ()
+        }
     }
 
     private func getCurrentAudioDevice() -> AudioDeviceType {

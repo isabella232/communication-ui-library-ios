@@ -83,6 +83,7 @@
 		1FCB056B2671D8BE00126A4E /* StyleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCB056A2671D8BE00126A4E /* StyleProvider.swift */; };
 		1FD299642723345B0084B9ED /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD299632723345B0084B9ED /* DefaultLogger.swift */; };
 		1FD299662728B72B0084B9ED /* CallingSDKEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD299652728B72B0084B9ED /* CallingSDKEventsHandler.swift */; };
+		1FDE2B0F27C98A7600C22B88 /* CallSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE2B0E27C98A7500C22B88 /* CallSystemManager.swift */; };
 		1FE1BE7F26FE38C9000A8D18 /* CompositeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1BE7E26FE38C9000A8D18 /* CompositeError.swift */; };
 		1FF252D627B6F29A006A113E /* JoiningCallActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF252D527B6F29A006A113E /* JoiningCallActivityView.swift */; };
 		1FFEA01426A68D0D00E90816 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEA01326A68D0D00E90816 /* UIFontExtension.swift */; };
@@ -282,6 +283,7 @@
 		1FCC1171618F8B6862B6118E /* Pods-AzureCommunicationUI-AzureCommunicationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AzureCommunicationUI-AzureCommunicationUITests.debug.xcconfig"; path = "Target Support Files/Pods-AzureCommunicationUI-AzureCommunicationUITests/Pods-AzureCommunicationUI-AzureCommunicationUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1FD299632723345B0084B9ED /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
 		1FD299652728B72B0084B9ED /* CallingSDKEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingSDKEventsHandler.swift; sourceTree = "<group>"; };
+		1FDE2B0E27C98A7500C22B88 /* CallSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSystemManager.swift; sourceTree = "<group>"; };
 		1FE1BE7E26FE38C9000A8D18 /* CompositeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeError.swift; sourceTree = "<group>"; };
 		1FF252D527B6F29A006A113E /* JoiningCallActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoiningCallActivityView.swift; sourceTree = "<group>"; };
 		1FFEA01326A68D0D00E90816 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				1F2BED872631EB7900D98266 /* PermissionsManager.swift */,
 				A874EDC3266152AA003C7D92 /* AppLifeCycleManager.swift */,
 				1F8E0B77268D0EF000DDD18E /* CompositeErrorManager.swift */,
+				1FDE2B0E27C98A7500C22B88 /* CallSystemManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1397,6 +1400,7 @@
 				50137D0626A7479C00AB843E /* EnvironmentValuesExtension.swift in Sources */,
 				1FD299642723345B0084B9ED /* DefaultLogger.swift in Sources */,
 				1F2BEDA92632530D00D98266 /* Action.swift in Sources */,
+				1FDE2B0F27C98A7600C22B88 /* CallSystemManager.swift in Sources */,
 				1FE1BE7F26FE38C9000A8D18 /* CompositeError.swift in Sources */,
 				985DF374269D096000CFDA55 /* SetupControlBarView.swift in Sources */,
 				1FA24BAD2666F0CC00B4A080 /* ColorThemeProvider.swift in Sources */,

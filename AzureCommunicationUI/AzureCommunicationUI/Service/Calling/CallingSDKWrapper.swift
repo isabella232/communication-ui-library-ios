@@ -73,6 +73,15 @@ class ACSCallingSDKWrapper: NSObject, CallingSDKWrapper {
             }.eraseToAnyPublisher()
     }
 
+    private func createProviderConfig() -> CXProviderConfiguration {
+            let providerConfig = CXProviderConfiguration(localizedName: "CallKit")
+            providerConfig.supportsVideo = true
+            providerConfig.maximumCallsPerCallGroup = 1
+            providerConfig.includesCallsInRecents = true
+            providerConfig.supportedHandleTypes = [.generic]
+            return providerConfig
+        }
+
     func joinCall(isCameraPreferred: Bool, isAudioPreferred: Bool) -> Future<Void, Error> {
         Future { promise in
             self.logger.debug( "Joining call")
@@ -101,7 +110,7 @@ class ACSCallingSDKWrapper: NSObject, CallingSDKWrapper {
                 }
 
                 if let error = error {
-                    self.logger.error( "Join call failed with error")
+                    self.logger.error( "------Join call failed with error:\(error)")
                     return promise(.failure(error))
                 }
 
@@ -267,7 +276,9 @@ extension ACSCallingSDKWrapper {
             }
 
             self.callClient?.createCallAgent(userCredential: self.callConfiguration.communicationTokenCredential,
-                                             options: options) { [weak self] (agent, error) in
+                                             options: options,
+                                             cxproviderConfig:
+                                                self.createProviderConfig()) { [weak self] (agent, error) in
                 guard let self = self else {
                     return promise(.failure(CompositeError.invalidSDKWrapper))
                 }

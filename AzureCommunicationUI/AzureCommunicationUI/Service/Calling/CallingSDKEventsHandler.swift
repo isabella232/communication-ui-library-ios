@@ -176,6 +176,7 @@ extension CallingSDKEventsHandler: CallDelegate,
 
     private func determineErrorType(previousStatus: CallingStatus, callEndReason: Int32) -> String {
         if callEndReason > 0 {
+            print("--------callEndReason:\(callEndReason)")
             if callEndReason == 401 {
                 return CallCompositeErrorCode.tokenExpired
             } else if callEndReason == 487 {
