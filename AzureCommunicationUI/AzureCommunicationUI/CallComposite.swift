@@ -22,6 +22,7 @@ public class CallComposite: ICallComposite {
     private let callCompositeEventsHandler = CallCompositeEventsHandler()
     private var errorManager: ErrorManager?
     private var avatarManager: AvatarManager?
+    private var localManager: LocalManager?
     private var lifeCycleManager: UIKitAppLifeCycleManager?
     private var permissionManager: AppPermissionsManager?
     private var audioSessionManager: AppAudioSessionManager?
@@ -37,10 +38,11 @@ public class CallComposite: ICallComposite {
     /// Assign closure to execute when an error occurs inside Call Composite.
     /// - Parameter action: The closure returning the error thrown from Call Composite.
     public func setTarget(didFail action: ((ErrorEvent) -> Void)? = nil,
-                          onLocalParticipant: ((ICallComposite) -> Void)? = nil,
+                          onLocalParticipant: ((_ previousData: PersonaData?,
+                                                _ manager: LocalManager) -> Void)? = nil,
                           onRemoteParticipant: ((CommunicationIdentifier, AvatarManager) -> Void)? = nil) {
         callCompositeEventsHandler.didFail = action
-        callCompositeEventsHandler.onLocalParticipant = onLocalParticipant
+        callCompositeEventsHandler.onLocalParticipantJoined = onLocalParticipant
         callCompositeEventsHandler.onRemoteParticipant = onRemoteParticipant
     }
 
@@ -60,10 +62,12 @@ public class CallComposite: ICallComposite {
         let toolkitHostingController = makeToolkitHostingController(router: dependencyContainer.resolve(),
                                                                     logger: dependencyContainer.resolve(),
                                                                     viewFactory: dependencyContainer.resolve())
+        avatarManager = dependencyContainer.resolve() as AvatarManager
+        localManager = dependencyContainer.resolve() as LocalManager
+
         setupManagers(store: dependencyContainer.resolve(),
                       containerHostingController: toolkitHostingController,
                       logger: dependencyContainer.resolve())
-        avatarManager = dependencyContainer.resolve() as AvatarManager
         present(toolkitHostingController)
     }
 
@@ -108,11 +112,12 @@ public class CallComposite: ICallComposite {
                                                          logger: logger)
         self.audioSessionManager = audioSessionManager
 
-        guard let onLocalParticipant = callCompositeEventsHandler.onLocalParticipant else {
+        guard let onLocalParticipant = callCompositeEventsHandler.onLocalParticipantJoined,
+                let localManager = localManager else {
             return
         }
 
-        onLocalParticipant(self)
+        onLocalParticipant(localManager.persona, localManager)
     }
 
     private func cleanUpManagers() {

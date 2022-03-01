@@ -53,6 +53,7 @@ final class DependencyContainer {
                                          avatarManager: resolve(),
                                          videoViewManager: resolve(),
                                          compositeViewModelFactory: resolve()) as CompositeViewFactory)
+        register(LocalManager(avatarManager: resolve()) as LocalManager)
     }
 
     private func makeStore(displayName: String?) -> Store<AppState> {

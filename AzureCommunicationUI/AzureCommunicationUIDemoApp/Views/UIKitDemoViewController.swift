@@ -130,7 +130,7 @@ class UIKitDemoViewController: UIViewController {
         print("::::UIkitDemoView error.code \(error.code)")
     }
 
-    func onLocalParticipant(_ composite: ICallComposite) {
+    func onLocalParticipant(_ previousData: PersonaData?, _ manager: LocalManager) {
         let urlRequest = URL(string:
 "https://img.favpng.com/0/15/12/computer-icons-avatar-male-user-profile-png-favpng-ycgruUsQBHhtGyGKfw7fWCtgN.jpg")!
         URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
@@ -139,7 +139,7 @@ class UIKitDemoViewController: UIViewController {
             } else if let data = data {
                 let avatar = UIImage(data: data)
                 let persona = PersonaData(displayName: "", avatar: avatar)
-                composite.setLocalParticipantPersona(for: persona)
+                manager.setLocalPersonaData(persona)
             }
         }.resume()
     }
