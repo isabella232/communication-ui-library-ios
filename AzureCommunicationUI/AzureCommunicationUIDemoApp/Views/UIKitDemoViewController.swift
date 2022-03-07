@@ -129,7 +129,7 @@ class UIKitDemoViewController: UIViewController {
         print("::::UIkitDemoView::getEventsHandler::didFail \(error)")
         print("::::UIkitDemoView error.code \(error.code)")
     }
-
+// onLocalParticipantInit
     func onLocalParticipant(_ previousData: PersonaData?, _ manager: LocalManager) {
         let urlRequest = URL(string:
 "https://img.favpng.com/0/15/12/computer-icons-avatar-male-user-profile-png-favpng-ycgruUsQBHhtGyGKfw7fWCtgN.jpg")!
@@ -143,7 +143,8 @@ class UIKitDemoViewController: UIViewController {
             }
         }.resume()
     }
-
+// onRemoteParticipantJoined
+    // diff particpants
     func onRemoteParticipant(_ identifier: CommunicationIdentifier,
                              avatarManager: AvatarManager) {
         /*        switch identifier {
@@ -180,7 +181,6 @@ class UIKitDemoViewController: UIViewController {
         let callComposite = CallComposite(withOptions: callCompositeOptions)
 
         callComposite.setTarget(didFail: didFail,
-                                onLocalParticipant: onLocalParticipant,
                                 onRemoteParticipant: onRemoteParticipant)
 
         if let communicationTokenCredential = try? getTokenCredential() {

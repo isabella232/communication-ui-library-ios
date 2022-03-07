@@ -8,7 +8,7 @@ import UIKit
 import AzureCommunicationCommon
 
 public typealias FetchImageAction = (UIImage?) -> Void
-
+// Potential name change here
 public struct PersonaData {
     var displayName: String? // Local
     var avatar: UIImage?

@@ -38,11 +38,8 @@ public class CallComposite: ICallComposite {
     /// Assign closure to execute when an error occurs inside Call Composite.
     /// - Parameter action: The closure returning the error thrown from Call Composite.
     public func setTarget(didFail action: ((ErrorEvent) -> Void)? = nil,
-                          onLocalParticipant: ((_ previousData: PersonaData?,
-                                                _ manager: LocalManager) -> Void)? = nil,
                           onRemoteParticipant: ((CommunicationIdentifier, AvatarManager) -> Void)? = nil) {
         callCompositeEventsHandler.didFail = action
-        callCompositeEventsHandler.onLocalParticipantJoined = onLocalParticipant
         callCompositeEventsHandler.onRemoteParticipant = onRemoteParticipant
     }
 
