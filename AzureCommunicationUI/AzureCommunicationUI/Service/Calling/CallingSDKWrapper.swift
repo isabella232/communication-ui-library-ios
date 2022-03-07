@@ -68,6 +68,7 @@ class ACSCallingSDKWrapper: NSObject, CallingSDKWrapper {
                     let error = CompositeError.invalidSDKWrapper
                     return Fail(error: error).eraseToAnyPublisher()
                 }
+                print("-----------join Call audio:\(isAudioPreferred), camera:\(isCameraPreferred)")
                 return self.joinCall(isCameraPreferred: isCameraPreferred,
                                      isAudioPreferred: isAudioPreferred).eraseToAnyPublisher()
             }.eraseToAnyPublisher()
@@ -274,11 +275,10 @@ extension ACSCallingSDKWrapper {
             if let displayName = self.callConfiguration.displayName {
                 options.displayName = displayName
             }
-
+            let callkitOptions = CallKitOptions(with: self.createProviderConfig())
             self.callClient?.createCallAgent(userCredential: self.callConfiguration.communicationTokenCredential,
                                              options: options,
-                                             cxproviderConfig:
-                                                self.createProviderConfig()) { [weak self] (agent, error) in
+                                             callKitOptions: callkitOptions) { [weak self] (agent, error) in
                 guard let self = self else {
                     return promise(.failure(CompositeError.invalidSDKWrapper))
                 }

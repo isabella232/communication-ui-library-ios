@@ -150,6 +150,8 @@ extension CallingSDKEventsHandler: CallDelegate,
 
     func call(_ call: Call, didChangeState args: PropertyChangedEventArgs) {
         let currentStatus = call.state.toCallingStatus()
+        print("---------callStatus:\(currentStatus)")
+
         let errorCode = determineErrorType(previousStatus: self.previousCallingStatus,
                                            callEndReason: call.callEndReason.code)
 

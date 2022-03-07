@@ -24,4 +24,9 @@ class RemoteParticipantsEventsAdapter: NSObject, RemoteParticipantDelegate {
                            didChangeMuteState args: PropertyChangedEventArgs) {
         onIsMutedChanged(remoteParticipant)
     }
+
+    func remoteParticipant(_ remoteParticipant: RemoteParticipant, didChangeState args: PropertyChangedEventArgs) {
+        print("---------remoteParticipant State:\(remoteParticipant.state.rawValue)")
+
+    }
 }
