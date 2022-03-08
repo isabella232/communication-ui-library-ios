@@ -1,9 +1,5 @@
 PODS:
   - AzureCommunicationCommon (1.0.2)
-  - AzureCore (0.5.0):
-    - KeychainAccess (~> 3.2)
-    - Willow (~> 5.2)
-  - KeychainAccess (3.2.1)
   - MicrosoftFluentUI/ActivityIndicator_ios (0.3.9):
     - MicrosoftFluentUI/Core_ios
   - MicrosoftFluentUI/Avatar_ios (0.3.9):
@@ -38,11 +34,9 @@ PODS:
   - MicrosoftFluentUI/TouchForwardingView_ios (0.3.9):
     - MicrosoftFluentUI/Core_ios
   - SwiftLint (0.42.0)
-  - Willow (5.2.1)
 
 DEPENDENCIES:
   - AzureCommunicationCommon
-  - AzureCore
   - MicrosoftFluentUI/ActivityIndicator_ios (= 0.3.9)
   - MicrosoftFluentUI/Avatar_ios (= 0.3.9)
   - MicrosoftFluentUI/BottomSheet_ios (= 0.3.9)
@@ -53,20 +47,14 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AzureCommunicationCommon
-    - AzureCore
-    - KeychainAccess
     - MicrosoftFluentUI
     - SwiftLint
-    - Willow
 
 SPEC CHECKSUMS:
   AzureCommunicationCommon: 743009b95ca5de0b32fb5327b1105c6239b7d15d
-  AzureCore: 9f6c42e03d59a13b508bff356a85cd9438b654fb
-  KeychainAccess: d5470352939ced6d6f7fb51cb2e67aae51fc294f
   MicrosoftFluentUI: a1e8f35e43e615a3522c53492f1bc52e9d2a191e
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
-  Willow: a6310f9aedcb6f4de8c35b94fd3416a660ae9280
 
-PODFILE CHECKSUM: dc5d9a60d2dce55f22d2448102117eab55c664d7
+PODFILE CHECKSUM: 363df4efadbd79a56c702d7db7c491098f506a0a
 
 COCOAPODS: 1.11.2

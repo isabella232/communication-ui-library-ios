@@ -9,7 +9,6 @@ target 'AzureCommunicationUI' do
   project 'AzureCommunicationUI.xcodeproj'
   use_frameworks!
   pod 'AzureCommunicationCommon'
-  pod 'AzureCore'
   pod 'MicrosoftFluentUI/Avatar_ios', '0.3.9'
   pod 'MicrosoftFluentUI/BottomSheet_ios', '0.3.9'
   pod 'MicrosoftFluentUI/Button_ios', '0.3.9'
@@ -27,7 +26,6 @@ target 'AzureCommunicationUIDemoApp' do
   project 'AzureCommunicationUIDemoApp.xcodeproj'
   use_frameworks!
   pod 'AzureCommunicationCommon'
-  pod 'AzureCore'
 pod 'MicrosoftFluentUI/Avatar_ios', '0.3.9'
 pod 'MicrosoftFluentUI/BottomSheet_ios', '0.3.9'
 pod 'MicrosoftFluentUI/Button_ios', '0.3.9'

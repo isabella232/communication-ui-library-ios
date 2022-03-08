@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import AVFoundation
 import Combine
 import AzureCommunicationCalling
 
@@ -276,9 +277,9 @@ extension ACSCallingSDKWrapper {
                 options.displayName = displayName
             }
             let callkitOptions = CallKitOptions(with: self.createProviderConfig())
+            callkitOptions.configureAudioSession = self.configureAudioSession
             self.callClient?.createCallAgent(userCredential: self.callConfiguration.communicationTokenCredential,
-                                             options: options,
-                                             callKitOptions: callkitOptions) { [weak self] (agent, error) in
+                                             options: options) { [weak self] (agent, error) in
                 guard let self = self else {
                     return promise(.failure(CompositeError.invalidSDKWrapper))
                 }
@@ -391,5 +392,24 @@ extension ACSCallingSDKWrapper: DeviceManagerDelegate {
                 self?.localVideoStream = videoStream
                 return videoStream
             }).eraseToAnyPublisher()
+    }
+
+    private func configureAudioSession() -> Error? {
+        let audioSession = AVAudioSession.sharedInstance()
+        var configError: Error?
+        do {
+            let options: AVAudioSession.CategoryOptions = [.allowBluetooth,
+                                                           .duckOthers,
+                                                           .interruptSpokenAudioAndMixWithOthers,
+                                                           .allowBluetoothA2DP]
+            try audioSession.setCategory(.playAndRecord, mode: .voiceChat, options: options)
+//            try audioSession.overrideOutputAudioPort(.speaker)
+//            try audioSession.setActive(true)
+            print("==> configureAudioSession done")
+        } catch {
+            print("==> configureAudioSession failed")
+            configError = error
+        }
+        return configError
     }
 }
