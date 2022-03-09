@@ -118,7 +118,8 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
 
     func enterForeground(state: ReduxState?, dispatch: @escaping ActionDispatch) {
         if let state = state as? AppState {
-            if state.callingState.status == .connected,
+            if state.callingState.status == .connected ||
+                state.callingState.status == .localHold,
                state.localUserState.cameraState.operation == .paused {
                 requestCameraOn(state: state, dispatch: dispatch)
             }

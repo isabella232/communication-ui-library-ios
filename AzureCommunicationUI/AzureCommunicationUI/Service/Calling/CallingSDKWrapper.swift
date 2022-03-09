@@ -174,17 +174,17 @@ class ACSCallingSDKWrapper: NSObject, CallingSDKWrapper {
         Future { promise in
             guard let call = self.call,
                   let videoStream = self.localVideoStream else {
-                self.logger.debug("Local video stopped successfully without call")
+                self.logger.debug("------Local video stopped successfully without call")
                 promise(.success(()))
                 return
             }
             call.stopVideo(stream: videoStream) { [weak self] (error) in
                 if error != nil {
-                    self?.logger.error( "Local video failed to stop. \(error!)")
+                    self?.logger.error( "-------Local video failed to stop. \(error!)")
                     promise(.failure(error!))
                     return
                 }
-                self?.logger.debug("Local video stopped successfully")
+                self?.logger.debug("----------Local video stopped successfully")
                 promise(.success(()))
             }
 
@@ -277,9 +277,11 @@ extension ACSCallingSDKWrapper {
                 options.displayName = displayName
             }
             let callkitOptions = CallKitOptions(with: self.createProviderConfig())
-            callkitOptions.configureAudioSession = self.configureAudioSession
+            callkitOptions.isCallHoldSupported = false
+//            callkitOptions.configureAudioSession = self.configureAudioSession
             self.callClient?.createCallAgent(userCredential: self.callConfiguration.communicationTokenCredential,
-                                             options: options) { [weak self] (agent, error) in
+                                             options: options,
+                                             callKitOptions: callkitOptions) { [weak self] (agent, error) in
                 guard let self = self else {
                     return promise(.failure(CompositeError.invalidSDKWrapper))
                 }
@@ -306,19 +308,21 @@ extension ACSCallingSDKWrapper {
     }
 
     private func startCallVideoStream(_ videoStream: LocalVideoStream) -> Future<String, Error> {
-        Future { promise in
+        self.logger.debug("------startCallVideoStream")
+
+        return Future { promise in
             let localVideoStreamId = self.getLocalVideoStreamIdentifier() ?? ""
             guard let call = self.call else {
                 let error = CompositeError.invalidLocalVideoStream
-                self.logger.error( "Start call video stream failed")
+                self.logger.error( "-------Start call video stream failed")
                 return promise(.failure(error))
             }
             call.startVideo(stream: videoStream) { error in
                 if let error = error {
-                    self.logger.error( "Local video failed to start. \(error)")
+                    self.logger.error( "------Local video failed to start. \(error)")
                     return promise(.failure(error))
                 }
-                self.logger.debug("Local video started successfully")
+                self.logger.debug("------Local video started successfully")
                 return promise(.success(localVideoStreamId))
             }
         }

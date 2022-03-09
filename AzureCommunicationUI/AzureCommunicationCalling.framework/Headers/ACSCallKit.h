@@ -40,6 +40,8 @@ NS_SWIFT_NAME(CallKitOptions)
 
 @property (nonatomic, copy, nullable) NSError* _Nullable (^configureAudioSession)();
 
+@property BOOL isCallHoldSupported;
+
 @end
 
 

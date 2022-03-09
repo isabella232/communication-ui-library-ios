@@ -33,12 +33,12 @@ class UIKitAppLifeCycleManager: LifeCycleManager {
     }
 
     @objc func willDeactivate(_ notification: Notification) {
-        logger.debug("Will Deactivate")
+        logger.debug("------Will Deactivate")
         let appLifeCycleAction = LifecycleAction.BackgroundEntered()
         store.dispatch(action: appLifeCycleAction)
     }
     @objc func didActivate(_ notification: Notification) {
-        logger.debug("Did Activate")
+        logger.debug("-------Did Activate")
 
         let appLifeCycleAction = LifecycleAction.ForegroundEntered()
         store.dispatch(action: appLifeCycleAction)
