@@ -32,8 +32,11 @@ class ColorThemeProvider: ColorProviding {
     let hangup = UIColor.compositeColor(.hangup)
     let overlay = UIColor.compositeColor(.overlay)
 
+    let colorSchemeOverride: UIUserInterfaceStyle
+
     init(themeConfiguration: ThemeConfiguration?) {
         self.primaryColor = themeConfiguration?.primaryColor ?? UIColor.compositeColor(.primary)
+        self.colorSchemeOverride = themeConfiguration?.colorSchemeOverride ?? .unspecified
     }
 
     func primaryColor(for window: UIWindow) -> UIColor? {

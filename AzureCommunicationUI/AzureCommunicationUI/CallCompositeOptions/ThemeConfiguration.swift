@@ -11,10 +11,16 @@ public protocol ThemeConfiguration {
 
     /// Provide a getter to return a custom primary color.
     var primaryColor: UIColor { get }
+
+    /// Override color scheme to be light or dark.
+    var colorSchemeOverride: UIUserInterfaceStyle { get }
 }
 
 public extension ThemeConfiguration {
     var primaryColor: UIColor {
         return UIColor.compositeColor(.primary)
+    }
+    var colorSchemeOverride: UIUserInterfaceStyle {
+        return .unspecified
     }
 }
