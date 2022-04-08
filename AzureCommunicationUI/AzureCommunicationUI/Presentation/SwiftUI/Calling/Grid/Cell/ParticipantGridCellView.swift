@@ -9,18 +9,16 @@ import Combine
 
 struct ParticipantGridCellView: View {
     @ObservedObject var viewModel: ParticipantGridCellViewModel
+    @State var displayedParticipantRendererViewInfo: ParticipantRendererViewInfo?
+    @State var videoStreamId: String?
     let getRemoteParticipantRendererView: (RemoteParticipantVideoViewId) -> ParticipantRendererViewInfo?
     let rendererViewManager: RendererViewManager?
-    @State var displayedVideoStreamId: String?
-    @State var isVideoChanging: Bool = false
     let avatarSize: CGFloat = 56
 
     var body: some View {
         Group {
             GeometryReader { geometry in
-                if isVideoChanging {
-                    EmptyView()
-                } else if let rendererViewInfo = getRendererViewInfo() {
+                if let rendererViewInfo = displayedParticipantRendererViewInfo {
                     let zoomable = viewModel.videoViewModel?.videoStreamType == .screenSharing
                     ParticipantGridCellVideoView(videoRendererViewInfo: rendererViewInfo,
                                                  rendererViewManager: rendererViewManager,
@@ -38,38 +36,23 @@ struct ParticipantGridCellView: View {
             .accessibilityLabel(Text(viewModel.accessibilityLabel))
         }
         .onReceive(viewModel.$videoViewModel) { model in
-            let cachedVideoStreamId = displayedVideoStreamId
-            if model?.videoStreamId != displayedVideoStreamId {
-                displayedVideoStreamId = model?.videoStreamId
-            }
+            guard videoStreamId != model?.videoStreamId
+            else { return }
 
-            if model?.videoStreamId != cachedVideoStreamId,
-               model?.videoStreamId != nil {
-                // workaround to force rendererView being recreated
-                isVideoChanging = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    isVideoChanging = false
-                }
-            }
+            videoStreamId = model?.videoStreamId
+            displayedParticipantRendererViewInfo = getRendererViewInfo(for: videoStreamId)
         }
     }
 
-    func getRendererViewInfo() -> ParticipantRendererViewInfo? {
-        guard let remoteParticipantVideoViewId = getRemoteParticipantVideoViewId() else {
-            return nil
-        }
-
-        return getRemoteParticipantRendererView(remoteParticipantVideoViewId)
-    }
-
-    private func getRemoteParticipantVideoViewId() -> RemoteParticipantVideoViewId? {
-        guard let videoStreamId = viewModel.videoViewModel?.videoStreamId,
-              !videoStreamId.isEmpty else {
+    func getRendererViewInfo(for videoStreamId: String?) -> ParticipantRendererViewInfo? {
+        guard let remoteParticipantVideoStreamId = videoStreamId,
+              !remoteParticipantVideoStreamId.isEmpty else {
             return nil
         }
         let userId = viewModel.participantIdentifier
-        return RemoteParticipantVideoViewId(userIdentifier: userId,
-                                            videoStreamIdentifier: videoStreamId)
+        let remoteParticipantVideoViewId = RemoteParticipantVideoViewId(userIdentifier: userId,
+                                            videoStreamIdentifier: remoteParticipantVideoStreamId)
+        return getRemoteParticipantRendererView(remoteParticipantVideoViewId)
     }
 
     var avatarView: some View {

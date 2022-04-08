@@ -56,6 +56,7 @@ enum LocalVideoViewType {
 
 struct LocalVideoView: View {
     @ObservedObject var viewModel: LocalVideoViewModel
+    @State var localVideoRendererView: UIView?
     let viewManager: VideoViewManager
     let viewType: LocalVideoViewType
     @Environment(\.screenSizeClass) var screenSizeClass: ScreenSizeClassType
@@ -63,8 +64,7 @@ struct LocalVideoView: View {
     var body: some View {
         Group {
             GeometryReader { geometry in
-                if let localVideoStreamId = viewModel.localVideoStreamId,
-                   let rendererView = viewManager.getLocalVideoRendererView(localVideoStreamId) {
+                if let rendererView = localVideoRendererView {
                     ZStack(alignment: viewType.cameraSwitchButtonAlignment) {
                         VideoRendererView(rendererView: rendererView)
                             .scaledToFill()
@@ -95,8 +95,13 @@ struct LocalVideoView: View {
                            height: geometry.size.height)
                 }
             }
-        }.onReceive(viewModel.$localVideoStreamId) {
-            viewManager.updateDisplayedLocalVideoStream($0)
+        }.onReceive(viewModel.$localVideoStreamId) { streamId in
+            viewManager.updateDisplayedLocalVideoStream(streamId)
+            if let localVideoStreamId = streamId {
+                localVideoRendererView = viewManager.getLocalVideoRendererView(localVideoStreamId)
+            } else {
+                localVideoRendererView = nil
+            }
         }
     }
 
