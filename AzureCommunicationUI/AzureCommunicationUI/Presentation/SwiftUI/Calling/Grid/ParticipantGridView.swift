@@ -9,20 +9,19 @@ struct ParticipantGridView: View {
     let viewModel: ParticipantGridViewModel
     let videoViewManager: VideoViewManager
     let screenSize: ScreenSizeClassType
-    @State var gridsCount: Int = 0
+    @State var participantsCellViewModelArr: [ParticipantGridCellViewModel] = []
     var body: some View {
         return Group {
-            ParticipantGridLayoutView(cellViewModels: viewModel.participantsCellViewModelArr,
+            ParticipantGridLayoutView(cellViewModels: $participantsCellViewModelArr,
                                       getRemoteParticipantRendererView: getRemoteParticipantRendererView(videoViewId:),
                                       rendererViewManager: videoViewManager,
                                       screenSize: screenSize)
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .id(gridsCount)
-            .onReceive(viewModel.$gridsCount) {
-                gridsCount = $0
-            }
             .onReceive(viewModel.$displayedParticipantInfoModelArr) {
                 updateVideoViewManager(displayedRemoteInfoModelArr: $0)
+            }
+            .onReceive(viewModel.$participantsCellViewModelArr) { models in
+                participantsCellViewModelArr = models
             }
     }
 
@@ -40,7 +39,6 @@ struct ParticipantGridView: View {
             return RemoteParticipantVideoViewId(userIdentifier: $0.userIdentifier,
                                                 videoStreamIdentifier: videoStreamIdentifier)
         }
-
         videoViewManager.updateDisplayedRemoteVideoStream(videoCacheIds)
     }
 }

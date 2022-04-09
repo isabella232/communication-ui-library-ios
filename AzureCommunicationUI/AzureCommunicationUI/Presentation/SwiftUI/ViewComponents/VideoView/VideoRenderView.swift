@@ -11,9 +11,7 @@ struct VideoRendererView: UIViewRepresentable {
     let rendererView: UIView
 
     func makeUIView(context: Context) -> VideoRendererUIView {
-        let videoRendererUIView = VideoRendererUIView(rendererView: rendererView)
-        videoRendererUIView.contentMode = .scaleToFill
-        return videoRendererUIView
+        return VideoRendererUIView(rendererView: rendererView)
     }
 
     func updateUIView(_ uiView: VideoRendererUIView, context: Context) {

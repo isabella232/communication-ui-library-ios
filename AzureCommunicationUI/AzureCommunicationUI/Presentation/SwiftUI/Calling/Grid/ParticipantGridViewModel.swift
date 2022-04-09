@@ -14,7 +14,7 @@ class ParticipantGridViewModel: ObservableObject {
     private let maximumParticipantsDisplayed: Int = 6
 
     private var lastUpdateTimeStamp = Date()
-    private(set) var participantsCellViewModelArr: [ParticipantGridCellViewModel] = []
+    @Published var participantsCellViewModelArr: [ParticipantGridCellViewModel] = []
 
     @Published var gridsCount: Int = 0
     @Published var displayedParticipantInfoModelArr: [ParticipantInfoModel] = []
