@@ -9,19 +9,20 @@ struct ParticipantGridView: View {
     let viewModel: ParticipantGridViewModel
     let videoViewManager: VideoViewManager
     let screenSize: ScreenSizeClassType
-    @State var participantsCellViewModelArr: [ParticipantGridCellViewModel] = []
+    @State var gridsCount: Int = 0
     var body: some View {
         return Group {
-            ParticipantGridLayoutView(cellViewModels: $participantsCellViewModelArr,
+            ParticipantGridLayoutView(cellViewModels: viewModel.participantsCellViewModelArr,
                                       getRemoteParticipantRendererView: getRemoteParticipantRendererView(videoViewId:),
                                       rendererViewManager: videoViewManager,
                                       screenSize: screenSize)
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            .id(gridsCount)
+            .onReceive(viewModel.$gridsCount) {
+                gridsCount = $0
+            }
             .onReceive(viewModel.$displayedParticipantInfoModelArr) {
                 updateVideoViewManager(displayedRemoteInfoModelArr: $0)
-            }
-            .onReceive(viewModel.$participantsCellViewModelArr) { models in
-                participantsCellViewModelArr = models
             }
     }
 

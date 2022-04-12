@@ -123,16 +123,19 @@ class VideoViewManager: NSObject, RendererDelegate, RendererViewManager {
             let options = CreateViewOptions(scalingMode: videoStream.mediaStreamType == .screenSharing ? .fit : .crop)
             let newRenderer: VideoStreamRenderer = try VideoStreamRenderer(remoteVideoStream: videoStream)
             let newRendererView: RendererView = try newRenderer.createView(withOptions: options)
-
+            print("!!!\(Date())!getRemoteParticipantVideoRendererView cacheKey \(cacheKey)")
+            print("!!!\(Date())!getRemoteParticipantVideoRendererView videoViewId \(videoViewId)")
+            print("!!!\(Date())!getRemoteParticipantVideoRendererView newRenderer \(newRenderer)")
+            print("!!!\(Date())!getRemoteParticipantVideoRendererView newRendererView \(newRendererView)")
             let cache = VideoStreamCache(renderer: newRenderer,
                                          rendererView: newRendererView,
                                          mediaStreamType: videoStream.mediaStreamType)
             displayedRemoteParticipantsRendererView.append(forKey: cacheKey,
                                                            value: cache)
 
-            if videoStream.mediaStreamType == .screenSharing {
+//            if videoStream.mediaStreamType == .screenSharing {
                 newRenderer.delegate = self
-            }
+//            }
 
             return ParticipantRendererViewInfo(rendererView: newRendererView, streamSize: .zero)
         } catch let error {
@@ -166,6 +169,9 @@ class VideoViewManager: NSObject, RendererDelegate, RendererViewManager {
         if let renderer = displayedRemoteParticipantsRendererView.removeValue(forKey: cacheId) {
             renderer.renderer.dispose()
             renderer.renderer.delegate = nil
+            print("!!!\(Date()) disposed cacheId \(cacheId)")
+            print("!!!\(Date()) disposed renderer \(renderer)")
+            print("!!!\(Date()) disposed renderer.rendererView.superview \(renderer.rendererView.superview)")
         }
     }
 
@@ -182,11 +188,13 @@ class VideoViewManager: NSObject, RendererDelegate, RendererViewManager {
     // MARK: RendererDelegate
 
     func videoStreamRenderer(didRenderFirstFrame renderer: VideoStreamRenderer) {
+        print("!!!\(Date())!!videoStreamRenderer(didRenderFirstFrame renderer \(renderer)")
         let size = CGSize(width: Int(renderer.size.width), height: Int(renderer.size.height))
-        didRenderFirstFrame?(size)
+//        didRenderFirstFrame?(size)
     }
 
     func videoStreamRenderer(didFailToStart renderer: VideoStreamRenderer) {
+        print("!!!\(Date())!!videoStreamRenderer(didFailToStart renderer \(renderer)")
         logger.error("Failed to render remote screenshare video. \(renderer)")
     }
 }

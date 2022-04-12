@@ -36,11 +36,12 @@ struct ParticipantGridCellView: View {
             .accessibilityLabel(Text(viewModel.accessibilityLabel))
         }
         .onReceive(viewModel.$videoViewModel) { model in
-            guard videoStreamId != model?.videoStreamId
-            else { return }
+//            guard videoStreamId != model?.videoStreamId
+//            else { return }
 
-            videoStreamId = model?.videoStreamId
-            displayedParticipantRendererViewInfo = getRendererViewInfo(for: videoStreamId)
+//            videoStreamId = model?.videoStreamId
+            print("!!!\(Date())nReceive(viewModel.$videoViewModel) \(model)")
+            displayedParticipantRendererViewInfo = getRendererViewInfo(for: model?.videoStreamId)
         }
     }
 
