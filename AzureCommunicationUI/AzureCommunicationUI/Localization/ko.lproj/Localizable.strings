@@ -41,6 +41,8 @@
 
 "AzureCommunicationUI.CallingView.ParticipantDrawer.Unnamed"="명명되지 않은 참가자";
 "AzureCommunicationUI.CallingView.ParticipantDrawer.LocalParticipant"="%@(귀하)"; // %@ is local participant name
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsMuted"="음소거";
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsUnmuted"="음소거 해제됨";
 
 "AzureCommunicationUI.CallingView.SwitchCamera.Front"="후면 카메라로 전환";
 "AzureCommunicationUI.CallingView.SwitchCamera.Back"="전면 카메라로 전환";
@@ -50,8 +52,9 @@
 "AzureCommunicationUI.CallingView.OnePersonLeft"="%@ 님이 모임을 나갔습니다.";
 "AzureCommunicationUI.CallingView.MutiplePeopleLeft"="%d명 참가자가 모임에서 나갔습니다.";
 
-"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="통화 나가기";
+"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="나가기";
 "AzureCommunicationUI.CallingView.Overlay.Cancel"="취소";
+"AzureCommunicationUI.CallingView.LeaveCallList.Header.LeaveCall"="통화를 종료하시겠어요?";
 
 /* ComplianceBanner title */
 "AzureCommunicationUI.CallingView.BannerTitle.RecordingAndTranscribingStarted"="녹음/녹화와 전사를 시작했습니다.";

@@ -41,6 +41,8 @@
 
 "AzureCommunicationUI.CallingView.ParticipantDrawer.Unnamed"="Participante sem nome";
 "AzureCommunicationUI.CallingView.ParticipantDrawer.LocalParticipant"="%@ (Você)"; // %@ is local participant name
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsMuted"="Mudo Ativado";
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsUnmuted"="Mudo Desativado";
 
 "AzureCommunicationUI.CallingView.SwitchCamera.Front"="Mudar para a câmera traseira";
 "AzureCommunicationUI.CallingView.SwitchCamera.Back"="Mudar para a câmera frontal";
@@ -50,8 +52,9 @@
 "AzureCommunicationUI.CallingView.OnePersonLeft"="%@ saiu da reunião";
 "AzureCommunicationUI.CallingView.MutiplePeopleLeft"="%d participantes saíram da reunião";
 
-"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="Sair da chamada";
+"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="Sair";
 "AzureCommunicationUI.CallingView.Overlay.Cancel"="Cancelar";
+"AzureCommunicationUI.CallingView.LeaveCallList.Header.LeaveCall"="Sair da chamada?";
 
 /* ComplianceBanner title */
 "AzureCommunicationUI.CallingView.BannerTitle.RecordingAndTranscribingStarted"="A gravação e a transcrição foram iniciadas.";

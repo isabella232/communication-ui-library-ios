@@ -41,6 +41,8 @@
 
 "AzureCommunicationUI.CallingView.ParticipantDrawer.Unnamed"="Adsız Katılımcı";
 "AzureCommunicationUI.CallingView.ParticipantDrawer.LocalParticipant"="%@ (Siz)"; // %@ is local participant name
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsMuted"="Sessize alındı";
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsUnmuted"="Sesi açıldı";
 
 "AzureCommunicationUI.CallingView.SwitchCamera.Front"="Arka kameraya geç";
 "AzureCommunicationUI.CallingView.SwitchCamera.Back"="Ön kameraya geç";
@@ -50,8 +52,9 @@
 "AzureCommunicationUI.CallingView.OnePersonLeft"="%@ toplantıdan ayrıldı";
 "AzureCommunicationUI.CallingView.MutiplePeopleLeft"="%d katılımcı toplantıdan ayrıldı";
 
-"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="Aramadan ayrıl";
+"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="Çık";
 "AzureCommunicationUI.CallingView.Overlay.Cancel"="İptal";
+"AzureCommunicationUI.CallingView.LeaveCallList.Header.LeaveCall"="Aramadan çıkılsın mı?";
 
 /* ComplianceBanner title */
 "AzureCommunicationUI.CallingView.BannerTitle.RecordingAndTranscribingStarted"="Kayıt ve döküm başlatıldı.";

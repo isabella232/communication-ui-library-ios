@@ -41,6 +41,8 @@
 
 "AzureCommunicationUI.CallingView.ParticipantDrawer.Unnamed"="Участник без имени";
 "AzureCommunicationUI.CallingView.ParticipantDrawer.LocalParticipant"="%@ (вы)"; // %@ is local participant name
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsMuted"="Звук отключен";
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsUnmuted"="Звук включен";
 
 "AzureCommunicationUI.CallingView.SwitchCamera.Front"="Переключиться на заднюю камеру";
 "AzureCommunicationUI.CallingView.SwitchCamera.Back"="Переключиться на переднюю камеру";
@@ -50,8 +52,9 @@
 "AzureCommunicationUI.CallingView.OnePersonLeft"="Пользователь %@ покинул собрание";
 "AzureCommunicationUI.CallingView.MutiplePeopleLeft"="Количество участников, покинувших собрание: %d";
 
-"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="Покинуть звонок";
+"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="Выйти";
 "AzureCommunicationUI.CallingView.Overlay.Cancel"="Отмена";
+"AzureCommunicationUI.CallingView.LeaveCallList.Header.LeaveCall"="Выйти из звонка?";
 
 /* ComplianceBanner title */
 "AzureCommunicationUI.CallingView.BannerTitle.RecordingAndTranscribingStarted"="Начата запись и транскрибирование.";

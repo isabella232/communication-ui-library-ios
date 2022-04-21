@@ -41,6 +41,8 @@
 
 "AzureCommunicationUI.CallingView.ParticipantDrawer.Unnamed"="Naamloze deelnemer";
 "AzureCommunicationUI.CallingView.ParticipantDrawer.LocalParticipant"="%@ (u)"; // %@ is local participant name
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsMuted"="Muted";
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsUnmuted"="Unmuted";
 
 "AzureCommunicationUI.CallingView.SwitchCamera.Front"="Overschakelen naar de camera op de achterzijde";
 "AzureCommunicationUI.CallingView.SwitchCamera.Back"="Overschakelen naar de camera op de voorzijde";
@@ -52,6 +54,7 @@
 
 "AzureCommunicationUI.CallingView.Overlay.LeaveCall"="Gesprek verlaten";
 "AzureCommunicationUI.CallingView.Overlay.Cancel"="Annuleren";
+"AzureCommunicationUI.CallingView.LeaveCallList.Header.LeaveCall"="Leave call?";
 
 /* ComplianceBanner title */
 "AzureCommunicationUI.CallingView.BannerTitle.RecordingAndTranscribingStarted"="Opname en transcriptie zijn gestart.";
