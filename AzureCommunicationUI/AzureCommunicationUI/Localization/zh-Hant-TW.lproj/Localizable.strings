@@ -41,6 +41,8 @@
 
 "AzureCommunicationUI.CallingView.ParticipantDrawer.Unnamed"="未命名的參與者";
 "AzureCommunicationUI.CallingView.ParticipantDrawer.LocalParticipant"="%@ (您)"; // %@ is local participant name
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsMuted"="已靜音";
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsUnmuted"="已取消靜音";
 
 "AzureCommunicationUI.CallingView.SwitchCamera.Front"="切換到後相機";
 "AzureCommunicationUI.CallingView.SwitchCamera.Back"="切換到前相機";
@@ -50,8 +52,9 @@
 "AzureCommunicationUI.CallingView.OnePersonLeft"="%@ 已離開會議";
 "AzureCommunicationUI.CallingView.MutiplePeopleLeft"="%d 個參與者已離開會議";
 
-"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="離開通話";
+"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="離開";
 "AzureCommunicationUI.CallingView.Overlay.Cancel"="取消";
+"AzureCommunicationUI.CallingView.LeaveCallList.Header.LeaveCall"="離開通話";
 
 /* ComplianceBanner title */
 "AzureCommunicationUI.CallingView.BannerTitle.RecordingAndTranscribingStarted"="已開始錄製並進行轉錄。";

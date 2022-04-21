@@ -41,6 +41,8 @@
 
 "AzureCommunicationUI.CallingView.ParticipantDrawer.Unnamed"="名前のない参加者";
 "AzureCommunicationUI.CallingView.ParticipantDrawer.LocalParticipant"="%@ (あなた)"; // %@ is local participant name
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsMuted"="ミュート状態";
+"AzureCommunicationUI.CallingView.ParticipantDrawer.IsUnmuted"="ミュート解除";
 
 "AzureCommunicationUI.CallingView.SwitchCamera.Front"="バック カメラに切り替える";
 "AzureCommunicationUI.CallingView.SwitchCamera.Back"="フロント カメラに切り替える";
@@ -50,8 +52,9 @@
 "AzureCommunicationUI.CallingView.OnePersonLeft"="%@ さんが会議から退出しました";
 "AzureCommunicationUI.CallingView.MutiplePeopleLeft"="%d 人の参加者が会議から退出しました";
 
-"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="通話から退出";
+"AzureCommunicationUI.CallingView.Overlay.LeaveCall"="退出";
 "AzureCommunicationUI.CallingView.Overlay.Cancel"="キャンセル";
+"AzureCommunicationUI.CallingView.LeaveCallList.Header.LeaveCall"="通話を終了しますか?";
 
 /* ComplianceBanner title */
 "AzureCommunicationUI.CallingView.BannerTitle.RecordingAndTranscribingStarted"="レコーディングとトランスクリプトが開始されました。";
